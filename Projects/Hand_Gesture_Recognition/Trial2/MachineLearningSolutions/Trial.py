@@ -24,3 +24,4 @@ plt.plot(a)
 plt.grid('on')
 plt.show()
 print(np.arange(10))
+
