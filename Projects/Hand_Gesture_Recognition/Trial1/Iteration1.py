@@ -74,8 +74,8 @@ def not_skin_mask(img, removeFace = False):
     # The red value of skin is greater than blue or green. This narrows down the region of search
     # Greater red pixels will have 128. Assign all to 128, then assign the mismatches to 0
     mask_greater_red = np.ones_like(img[:, :, 0], dtype=np.uint8) * 128
-    mask_greater_red[img[:, :, 2] < img[:, :, 0]] = 0  # Red channel < Blue channel => 0
-    mask_greater_red[img[:, :, 2] < img[:, :, 1]] = 0  # Red channel < Green channel => 0
+    mask_greater_red[img[:, :, 2] <= img[:, :, 0] + 5] = 0  # Red channel <= Blue channel + 5 => 0
+    mask_greater_red[img[:, :, 2] <= img[:, :, 1] + 5] = 0  # Red channel <= Green channel + 5 => 0
     mask = mask_greater_red
     # Remove light sources of variance > 240
     img_hsv = cv.cvtColor(img, cv.COLOR_BGR2HSV)
@@ -269,6 +269,7 @@ while cam.isOpened():
             bbox = data["bounding_rect"]
             (x, y, w, h) = bbox
             cv.imwrite("Data/IMG_{num}.jpg".format(num=data["hand_number"]), mask_skin[y:y + h, x:x + w])
+        break
 
 # Your end code here
 cv.destroyAllWindows()
