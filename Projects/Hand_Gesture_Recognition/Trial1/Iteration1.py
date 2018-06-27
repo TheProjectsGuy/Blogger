@@ -16,6 +16,11 @@ import numpy as np
 
 cam_no = 0
 cam = cv.VideoCapture(cam_no)
+if not cam.isOpened():
+    # Camera not attached or busy, thus not open for taking frames
+    print("ERROR : Camera resource not found. Closing application")
+    exit(0)
+
 # Your declaration or starting code here
 bgsub = cv.createBackgroundSubtractorMOG2()
 # Comment while execution (required only for intellisence
@@ -59,16 +64,18 @@ def not_skin_mask(img, removeFace = False):
     """
         Generates a mask of things that are not remotely close to skin colour
         The result has 255 for every point that can safely be removed and 0 for every point that must not be removed
-        It returns 128 for maybe skin
+        It returns 128 for maybe skin region
     :param img:
-        Image to process
+        Image to process (BGR colour format as in OpenCV)
     :return:
         mask
     """
-    # Greater red pixels will have 255
-    mask_greater_red = np.ones_like(img[:, :, 0], dtype=np.uint8) * 255
-    mask_greater_red[img[:, :, 0] < img[:, :, 1]] = 0
-    mask_greater_red[img[:, :, 0] < img[:, :, 2]] = 0
+    # The red value of skin is greater than blue or green. This narrows down the region of search
+    # Greater red pixels will have 128. Assign all to 128, then assign the mismatches to 0
+    mask_greater_red = np.ones_like(img[:, :, 0], dtype=np.uint8) * 128
+    mask_greater_red[img[:, :, 2] < img[:, :, 0]] = 0  # Red channel < Blue channel => 0
+    mask_greater_red[img[:, :, 2] < img[:, :, 1]] = 0  # Red channel < Green channel => 0
+    mask = mask_greater_red
     # mask_high_variance = np.zeros_like(img, )
     mask_maybe_skin = np.zeros_like(img[:, :, 0], dtype=np.uint8)
     # Got from testing
@@ -81,16 +88,17 @@ def not_skin_mask(img, removeFace = False):
     # TODO - Remove the face from the region if removeFace is True
     # Use a Trained Haarcascade classifier
 
-    mask = mask_greater_red
-    mask[mask_maybe_skin == 128] = 128
+    # mask[mask_maybe_skin == 128] = 128
     return mask
 
 
+'''
+# Function not used 
 # To return the mask of objects that are stationary (255 - Stationary, 128 - Maybe in motion, 0 - definitely in motion)
 def stationary_object_mask(img):
     """
         Generates a mask of objects that are stationary in the scene. For a completely stationary object, value is 255
-        For a completely stationary object, value is 0. 128 for maybe stationary
+        For a completely stationary object, value is 0. 128 for maybe stationary.
     :param img: input image
     :return:
         mask
@@ -99,7 +107,7 @@ def stationary_object_mask(img):
     mask = bgsub.apply(img, learningRate=learning_rate)
     mask = 255 - mask  # Toggle everything
     return mask
-
+'''
 
 # Perform contour analysis
 def contour_analysis(retInfo=False, skin_mask = None):
@@ -192,11 +200,10 @@ while cam.isOpened():
 
     # Your loop code here
     t1 = cv.getTickCount()
-    # Fix things and reduce noise
+    # Fix things and reduce noise (Preprocessing)
     frame = cv.flip(frame, 1)
     frame = cv.GaussianBlur(frame, (7, 7), 5)
     # cv.imshow("Live feed", frame)
-    view_channels(frame)
 
     # Stationary objects
     # mask_stationary_obj = stationary_object_mask(frame)
@@ -219,6 +226,7 @@ while cam.isOpened():
     # Put up results
     print(len(hand_information["result"]["hands"]), 'hand(s) found : ', end='')
     # ~~~~~~~~~~~~~ Stage 2 ends here ~~~~~~~~~~~~~
+    # Results
     for i in range(hand_information["result"]["number_hands"]):
         # Print hand description
         hand = hand_information["result"]["hands"][i]
@@ -249,6 +257,8 @@ while cam.isOpened():
                 cv.destroyAllWindows()
                 cam.release()
                 exit(0)
+    elif key == ord('v'):
+        view_channels(frame)
 
 # Your end code here
 cv.destroyAllWindows()
