@@ -6,9 +6,9 @@ Use a mask (HSV) to get skin only
 Detect biggest contour after removing all the faces and then do contour analysis on it
 
 NOTE :
-Background must be stationary for this, so this can't be used for cameras in motion with so much accuracy
+Background must be uniform and distinct for this. Mask needs to be proper
 
-Result : Kind of fine
+Result : Satisfactory for minute applications
 
 """
 import cv2 as cv

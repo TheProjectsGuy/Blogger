@@ -2,19 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="75d4d770-f305-4f3f-b9ab-e8f74e9a2774" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Trial1/Data/Gestures/E_4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Trial1/Data/Gestures/E_5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trial1/Data/Not_fingers/E_10.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trial1/Data/Not_fingers/E_11.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trial1/Data/Not_fingers/E_12.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trial1/Data/Not_fingers/E_13.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trial1/Data/Not_fingers/E_14.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trial1/Data/Not_fingers/E_15.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trial1/Data/Not_fingers/E_6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trial1/Data/Not_fingers/E_7.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trial1/Data/Not_fingers/E_8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trial1/Data/Not_fingers/E_9.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Trial1/Iteration1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trial1/Iteration1.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,8 +16,8 @@
       <file leaf-file-name="Iteration1.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Trial1/Iteration1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="653">
-              <caret line="188" selection-start-line="188" selection-end-line="188" />
+            <state relative-caret-position="150">
+              <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -241,8 +228,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Trial1/Iteration1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="653">
-          <caret line="188" selection-start-line="188" selection-end-line="188" />
+        <state relative-caret-position="150">
+          <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
         </state>
       </provider>
     </entry>
