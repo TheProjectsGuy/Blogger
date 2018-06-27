@@ -63,8 +63,9 @@ def getBoundsHSV_HandColors():
 def not_skin_mask(img, removeFace = False):
     """
         Generates a mask of things that are not remotely close to skin colour
-        The result has 255 for every point that can safely be removed and 0 for every point that must not be removed
-        It returns 128 for maybe skin region
+        255 -> Not skin
+        128 -> maybe skin
+        0 -> Middle ground (further decision required)
     :param img:
         Image to process (BGR colour format as in OpenCV)
     :return:
@@ -76,19 +77,19 @@ def not_skin_mask(img, removeFace = False):
     mask_greater_red[img[:, :, 2] < img[:, :, 0]] = 0  # Red channel < Blue channel => 0
     mask_greater_red[img[:, :, 2] < img[:, :, 1]] = 0  # Red channel < Green channel => 0
     mask = mask_greater_red
-    # mask_high_variance = np.zeros_like(img, )
-    mask_maybe_skin = np.zeros_like(img[:, :, 0], dtype=np.uint8)
-    # Got from testing
+    # Remove light sources of variance > 240
+    img_hsv = cv.cvtColor(img, cv.COLOR_BGR2HSV)
+    mask[img_hsv[:, :, 2] > 240] = 255
+    # Got from testing in a custom environment
     lower_hsv_bound, higher_hsv_bound = getBoundsHSV_HandColors()
     mask_skin = cv.inRange(cv.cvtColor(img, cv.COLOR_BGR2HSV), lower_hsv_bound, higher_hsv_bound)
-    mask_maybe_skin[mask_skin == 255] = 128
+    mask[mask_skin == 255] = 128
 
     # TODO - Make something to remove things that are stationary in the frame
     # You can use the stationary_object_mask
     # TODO - Remove the face from the region if removeFace is True
     # Use a Trained Haarcascade classifier
 
-    # mask[mask_maybe_skin == 128] = 128
     return mask
 
 
@@ -110,7 +111,7 @@ def stationary_object_mask(img):
 '''
 
 # Perform contour analysis
-def contour_analysis(retInfo=False, skin_mask = None):
+def contour_hand_analysis(retInfo=False, skin_mask = None):
     """
         Make contours and analyze the frame based on all information known, return a dictionary if needed
     :param retInfo:
@@ -132,7 +133,7 @@ def contour_analysis(retInfo=False, skin_mask = None):
     """
     if skin_mask is None:
         skin_mask = mask_skin
-    # Contour analysis
+    # Contour analysis (Find contours in the image)
     _, contours, hierarchy = cv.findContours(skin_mask, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
     disp_frame = frame.copy()
     number_hands = 0
@@ -151,37 +152,39 @@ def contour_analysis(retInfo=False, skin_mask = None):
         if area < cv.getTrackbarPos('Area', 'Threshold Properties'):
             continue
         hull = cv.convexHull(cnt, returnPoints=True)
-        cv.drawContours(disp_frame, [cnt], 0, (255, 0, 0))
-        cv.drawContours(disp_frame, [hull], 0, (0, 255, 0))
+        cv.drawContours(disp_frame, [cnt], 0, (255, 0, 0))      # Make contours
+        cv.drawContours(disp_frame, [hull], 0, (0, 255, 0))     # Make hull
         hull = cv.convexHull(cnt, returnPoints=False)
         convexity_defects = cv.convexityDefects(cnt, hull)
         # No convexity defects
         if convexity_defects is None:
             continue
         # Iterate over defects (to get gesture)
-        gesture_number = 0
+        number_defects = 0
         for j in range(len(convexity_defects)):
             defect = convexity_defects[j]
             (s, e, f, distance) = defect[0]
+            # Threshold by defect distance
             if distance < cv.getTrackbarPos('Contour Distance', 'Threshold Properties'):
                 continue
             start = tuple(cnt[s, 0])
             end = tuple(cnt[e, 0])
             far_defect = tuple(cnt[f, 0])
             cv.circle(disp_frame, far_defect, 3, (0, 0, 255), thickness=3)
-
             # This circle is a part of the gesture number (number of high end convexity defects)
-            gesture_number += 1
+            number_defects += 1
+        # Bounding Rectangle
         b_rect = cv.boundingRect(cnt)
-        (x, y, w, h) =b_rect
+        (x, y, w, h) = b_rect
         cv.rectangle(disp_frame, (x, y), (x + w, y + h), (255, 255, 0))
+        cv.putText(disp_frame, "{num}".format(num= number_hands + 1), (x, y), cv.FONT_HERSHEY_COMPLEX, 0.7, (0, 0, 255))
         # If we've come up this far, then this contour is definitely a hand
         # Write all information about it in a dictionary
         number_hands += 1
         ret_info["result"]["hands"][number_hands - 1] = {
             "hand_number" : number_hands,
             "bounding_rect" : b_rect,
-            "number_fingers" : gesture_number + 1
+            "number_defects" : number_defects
         }
 
     ret_info["result"]["number_hands"] = number_hands
@@ -222,15 +225,15 @@ while cam.isOpened():
     pass
     # ~~~~~~~~~~~~~ Stage 2 starts here ~~~~~~~~~~~~~
     # Perform contour analysis on mask
-    disp_frame, hand_information = contour_analysis(retInfo=True)
+    disp_frame, hand_information = contour_hand_analysis(retInfo=True)
     # Put up results
-    print(len(hand_information["result"]["hands"]), 'hand(s) found : ', end='')
+    print(hand_information["result"]["number_hands"], 'hand(s) found : ', end='')
     # ~~~~~~~~~~~~~ Stage 2 ends here ~~~~~~~~~~~~~
-    # Results
+    # Show Results
     for i in range(hand_information["result"]["number_hands"]):
         # Print hand description
         hand = hand_information["result"]["hands"][i]
-        print("{0} giving {1}".format(hand["hand_number"], hand["number_fingers"]), end=', ')
+        print("{0} giving {1} defects".format(hand["hand_number"], hand["number_defects"]), end=', ')
     print('\b\b  ')
     t2 = cv.getTickCount()
     # Measure performance
@@ -259,6 +262,13 @@ while cam.isOpened():
                 exit(0)
     elif key == ord('v'):
         view_channels(frame)
+    elif key == ord('s'):
+        # Save the data in the dictionary
+        for i in range(hand_information["result"]["number_hands"]):
+            data = hand_information["result"]["hands"][i]
+            bbox = data["bounding_rect"]
+            (x, y, w, h) = bbox
+            cv.imwrite("Data/IMG_{num}.jpg".format(num=data["hand_number"]), mask_skin[y:y + h, x:x + w])
 
 # Your end code here
 cv.destroyAllWindows()
