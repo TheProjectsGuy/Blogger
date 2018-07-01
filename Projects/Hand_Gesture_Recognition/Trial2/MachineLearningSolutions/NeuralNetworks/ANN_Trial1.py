@@ -51,6 +51,9 @@ def load_dataset(dataset_dir_name="Data", x_name="X.npy",
 
     if shuffle_data:
         X, Y = shuffle_dataset(X, Y)
+    plt.imshow(X[:, 0].reshape((47, 38)), cmap='gray')
+    plt.title("{label}".format(label=Y[:,0]))
+    plt.show()
     return X, Y
 
 
@@ -384,7 +387,8 @@ def error_test_set(test_x, test_y, params):
     diff_vector = predictions - test_y
     diff_vector = np.square(diff_vector)
     mismatch_vector = diff_vector[diff_vector == 1].reshape((1, -1))
-    print("{err}% mismatch error".format(err=diff_vector.shape[1]/mismatch_vector.shape[1]))
+    print(diff_vector.shape, mismatch_vector.shape)
+    print("{err}% mismatch error".format(err=mismatch_vector.shape[1]/diff_vector.shape[1] * 100))
 
 
 error_test_set(X_test, Y_test, params)
