@@ -1,4 +1,5 @@
 import numpy as np
+import pickle
 import os
 from matplotlib import pyplot as plt
 
@@ -94,6 +95,10 @@ def init_params_deep(input_size, layer_tup):
     :param input_size: Size of the input layer
     :param layer_tup:  Tuple of layer sizes (hidden layers + output layer)
     :return:
+        layers_info, parameters
+        :return layer_size
+            The size architecture of the neural netowrk
+        :return params
         Dictionary
             "W + str(i)" : Weight of layer i
             "b + str(i)" : Biases of layer i
@@ -105,7 +110,7 @@ def init_params_deep(input_size, layer_tup):
     for i in range(1, len(layer_size)):
         params["W" + str(i)] = np.random.rand(layer_size[i], layer_size[i - 1]) * 10
         params["b" + str(i)] = np.zeros((layer_size[i], 1))
-    return params
+    return layer_size, params
 
 
 def parse_activations(activations):
@@ -336,17 +341,18 @@ X_train, Y_train = datasets["train"]
 X_dev, Y_dev = datasets["dev"]
 X_test, Y_test = datasets["test"]
 # Load weights and activation functions
-params = init_params_deep(X.shape[0], (50, 50, 1))
+architecture_nn, params = init_params_deep(X.shape[0], (50, 50, 1))
 activations = [relu, relu, sigmoid]
 # Training the network
-num_iter = 1000
-debug_iter_num = 100
+num_iter = 20
+debug_iter_num = 10
 cost_tracker = {
     "train_x" : [],
     "train_cost" : [],
     "eval_x" : [],
     "eval_cost" : []
 }
+# Hyperparameters
 learning_rate = 0.01
 reg_param_lambda = 1000
 
@@ -371,3 +377,20 @@ plt.plot(cost_tracker["train_x"], cost_tracker["train_cost"], 'b-',
 plt.show()
 
 
+def error_test_set(test_x, test_y, params):
+    A_pred, _ = forward_propagate_deep(params, activations, test_x)
+    predictions = np.zeros_like(A_pred)
+    predictions[A_pred > 0.5] = 1
+    diff_vector = predictions - test_y
+    diff_vector = np.square(diff_vector)
+    mismatch_vector = diff_vector[diff_vector == 1].reshape((1, -1))
+    print("{err}% mismatch error".format(err=diff_vector.shape[1]/mismatch_vector.shape[1]))
+
+
+error_test_set(X_test, Y_test, params)
+user_input = input("Save the input ? [Y/N] : ")
+if user_input == 'Y':
+    f_name = input("Enter file name : ")
+    f_name = "Results/{fn}".format(fn=f_name)
+    with open(f_name, 'wb') as file:
+        pickle.dump([architecture_nn, params], file)
