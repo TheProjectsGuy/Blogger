@@ -1,4 +1,5 @@
 import numpy as np
+import cv2 as cv
 import pickle
 import os
 from matplotlib import pyplot as plt
@@ -7,14 +8,15 @@ np.random.seed(2)
 
 
 def load_dataset(dataset_dir_name="Data", x_name="X.npy",
-                 y_name="Y_one_hot_encoded.npy", one_hot_index=0, shuffle_data=True, normalize_data = True):
+                 y_name="Y_one_hot_encoded.npy", one_hot_index=0, shuffle_data = True, normalize_data = True):
     """
     Loads a dataset stored as a .npy file
     :param dataset_dir_name: Name of the folder in which data is
     :param x_name: Name of file which contains inputs (with .npy extension)
     :param y_name: Name of file which contains outputs (with .npy extension)
     :param one_hot_index: The index you're training for (pass -1 for passing raw output file), should be >= -1
-    :param shuffle_data: Shuffle the data after getting it from file
+    :param shuffle_data: Shuffle the data
+    :param normalize_data: Normalize the input data
     :return:
         X, Y
         X -> Inputs
@@ -39,21 +41,20 @@ def load_dataset(dataset_dir_name="Data", x_name="X.npy",
     print("DATA DEBUG : Output shape is {out_shape}".format(out_shape=Y.shape))
     if normalize_data:
         X = X / 255
-    # Shuffle the dataset
-    def shuffle_dataset(X, Y):
-        buffer_data = np.row_stack((X, Y))
-        buffer_data = buffer_data.T
-        np.random.shuffle(buffer_data)
-        buffer_data = buffer_data.T
-        X = buffer_data[0:X.shape[0], :]
-        Y = buffer_data[X.shape[0]:X.shape[0] + Y.shape[0], :]
-        return X, Y
-
     if shuffle_data:
         X, Y = shuffle_dataset(X, Y)
-    plt.imshow(X[:, 0].reshape((47, 38)), cmap='gray')
-    plt.title("{label}".format(label=Y[:,0]))
-    plt.show()
+    Y_true_p = Y.nonzero()[1].reshape(1,-1).shape[1]/Y.shape[1]
+    print("DATA DEBUG : {tp}% data is true".format(tp=Y_true_p*100))
+    return X, Y
+
+
+def shuffle_dataset(X, Y):
+    buffer_data = np.row_stack((X, Y))
+    buffer_data = buffer_data.T
+    np.random.shuffle(buffer_data)
+    buffer_data = buffer_data.T
+    X = buffer_data[0:X.shape[0], :]
+    Y = buffer_data[X.shape[0]:X.shape[0] + Y.shape[0], :]
     return X, Y
 
 
@@ -100,7 +101,7 @@ def init_params_deep(input_size, layer_tup):
     :return:
         layers_info, parameters
         :return layer_size
-            The size architecture of the neural netowrk
+            The size architecture of the neural network. Sizes of every layer including input layer
         :return params
         Dictionary
             "W + str(i)" : Weight of layer i
@@ -111,7 +112,7 @@ def init_params_deep(input_size, layer_tup):
     print("DATA DEBUG : Initializing neural network with architecture {arc}".format(arc=layer_size))
     params = {}
     for i in range(1, len(layer_size)):
-        params["W" + str(i)] = np.random.rand(layer_size[i], layer_size[i - 1]) * 10
+        params["W" + str(i)] = np.random.randn(layer_size[i], layer_size[i - 1]) * 2 / np.sqrt(layer_size[i-1])
         params["b" + str(i)] = np.zeros((layer_size[i], 1))
     return layer_size, params
 
@@ -206,6 +207,27 @@ def relu():
     return func_dict
 
 
+def tanh():
+    """
+    Tan Hyperbolic activation function
+    :return:
+        Dictionary
+            "function" : Tan hyperbolic function
+            "derivative" : Derivative of tan hyperbolic function
+    """
+    def tanh_function(x):
+        return np.tanh(x)
+
+    def tanh_derivative(x):
+        return np.square(1/(np.cosh(x)))
+
+    func_dict = {
+        "function": tanh_function,
+        "derivative": tanh_derivative
+    }
+    return func_dict
+
+
 # Forward propagation step
 def forward_propagate_deep(params, activations, input):
     """
@@ -226,7 +248,7 @@ def forward_propagate_deep(params, activations, input):
     cache = {"A0": input}
     L = int(len(params.keys()) / 2)
     for i in range(1, L + 1):
-        cache["Z" + str(i)] = params["W" + str(i)] @ cache["A" + str(i - 1)] + params["b" + str(i)]
+        cache["Z" + str(i)] = np.matmul(params["W" + str(i)], cache["A" + str(i - 1)]) + params["b" + str(i)]
         act = activations[i - 1]()["function"]
         cache["A" + str(i)] = act(cache["Z" + str(i)])
     A_final = cache["A" + str(L)]
@@ -278,20 +300,19 @@ def backward_propagation_grads(cache, params, activations, Y):
         del_vals["del" + str(L)] = ((cache["A" + str(L)] - Y) / (m))
     for l in range(L - 1, 0, -1):  # Go backward from layer L-1 to 1 to calculate del_vals["del" + l]
         activation_derivative = activations[l-1]()["derivative"]
-        del_vals["del" + str(l)] = (params["W" + str(l + 1)].T @ del_vals["del" + str(l + 1)]) * \
+        del_vals["del" + str(l)] = np.matmul(params["W" + str(l + 1)].T, del_vals["del" + str(l + 1)]) * \
                                    activation_derivative(cache["Z" + str(l)])
     # Calculate final derivatives
     grads = {}
     # Final backward step
     for l in range(L, 0, -1):
-        grads["dW" + str(l)] = del_vals["del" + str(l)] @ cache["A" + str(l - 1)].T
-        grads["db" + str(l)] = del_vals["del" + str(l)] @ np.ones((m, 1))
-
+        grads["dW" + str(l)] = np.matmul(del_vals["del" + str(l)], cache["A" + str(l - 1)].T)
+        grads["db" + str(l)] = np.matmul(del_vals["del" + str(l)], np.ones((m, 1)))
     return grads
 
 
 # Back propagation step
-def back_propagation_deep(cache, params, activations, Y, learning_rate=0.01, reg_lambda = 1000):
+def back_propagation_deep(cache, params, activations, Y, learning_rate=0.01, reg_lambda = 2):
     """
     Perform one step of backward propagation
     :param cache: Output and weghed sum of every neuron of every layer in the neural network
@@ -315,69 +336,9 @@ def back_propagation_deep(cache, params, activations, Y, learning_rate=0.01, reg
     for l in range(L, 0, -1):  # Adjust gradients from layer L to 1
         params["W" + str(l)] = params["W" + str(l)] * (1 - learning_rate * reg_lambda/m)\
                                - learning_rate * grads["dW" + str(l)]
-        params["b" + str(l)] = params["b" + str(l)] - learning_rate * grads["db" + str(l)]
+        params["b" + str(l)] = params["b" + str(l)] * (1 - learning_rate * reg_lambda/m)\
+                               - learning_rate * grads["db" + str(l)]
     return params
-
-
-# Test functions
-def _test__functions():
-    """
-    Test functions
-    :return:
-    """
-    def _test_init():
-        X, Y = load_dataset(one_hot_index=0)
-        data_dict = split_train_dev_test(X, Y)
-
-    def _test_forward_propagation():
-        params = init_params_deep(3, (1, 2))
-        inp = np.array([[1], [3], [5]])
-        activations = [relu, relu]
-        Z2, cache = forward_propagate_deep(params, activations, inp)
-        print(Z2)
-
-
-# Load data into memory
-X, Y = load_dataset()
-datasets = split_train_dev_test(X, Y)
-X_train, Y_train = datasets["train"]
-X_dev, Y_dev = datasets["dev"]
-X_test, Y_test = datasets["test"]
-# Load weights and activation functions
-architecture_nn, params = init_params_deep(X.shape[0], (50, 50, 1))
-activations = [relu, relu, sigmoid]
-# Training the network
-num_iter = 20
-debug_iter_num = 10
-cost_tracker = {
-    "train_x" : [],
-    "train_cost" : [],
-    "eval_x" : [],
-    "eval_cost" : []
-}
-# Hyperparameters
-learning_rate = 0.01
-reg_param_lambda = 1000
-
-for i in range(num_iter):
-    # Forward propagate
-    A_pred, cache = forward_propagate_deep(params, activations, X_train)
-    # Note the cost
-    cost_iter = cost_function(A_pred, Y_train)
-    cost_tracker["train_x"].append(i)
-    cost_tracker["train_cost"].append(cost_iter)
-    if (i+1) % debug_iter_num == 0:
-        print("TRAIN DEBUG : Cost at iteration {it_num} is {cost}".format(cost=cost_iter, it_num=i+1))
-        pred_test, _ = forward_propagate_deep(params, activations, X_test)
-        cost_test = cost_function(pred_test, Y_test)
-        cost_tracker["eval_x"].append(i)
-        cost_tracker["eval_cost"].append(cost_test)
-    # Back propagation
-    params = back_propagation_deep(cache, params, activations, Y_train, learning_rate)
-
-plt.plot(cost_tracker["train_x"], cost_tracker["train_cost"], 'b-',
-         cost_tracker["eval_x"], cost_tracker["eval_cost"], 'g-')
-plt.show()
 
 
 def error_test_set(test_x, test_y, params):
@@ -387,14 +348,109 @@ def error_test_set(test_x, test_y, params):
     diff_vector = predictions - test_y
     diff_vector = np.square(diff_vector)
     mismatch_vector = diff_vector[diff_vector == 1].reshape((1, -1))
-    print(diff_vector.shape, mismatch_vector.shape)
-    print("{err}% mismatch error".format(err=mismatch_vector.shape[1]/diff_vector.shape[1] * 100))
+    print("TEST REPORT : {mis} mismatches out of {tot} test cases".format(mis=mismatch_vector.shape[1],
+                                                                          tot=test_y.shape[1]))
+    print("TEST REPORT : {err}% mismatch error".format(err=mismatch_vector.shape[1]/diff_vector.shape[1] * 100))
 
 
-error_test_set(X_test, Y_test, params)
-user_input = input("Save the input ? [Y/N] : ")
-if user_input == 'Y':
-    f_name = input("Enter file name : ")
-    f_name = "Results/{fn}".format(fn=f_name)
-    with open(f_name, 'wb') as file:
-        pickle.dump([architecture_nn, params], file)
+if __name__ == '__main__':
+    # Load data into memory
+    X, Y = load_dataset(y_name="Y.npy", one_hot_index=-1)
+    datasets = split_train_dev_test(X, Y, (900, 0, 21))
+    X_train, Y_train = datasets["train"]
+    X_dev, Y_dev = datasets["dev"]
+    X_test, Y_test = datasets["test"]
+    # Load weights and activation functions
+    architecture_nn, params = init_params_deep(X.shape[0], (100, 50, 50, 50, 5, 1))
+    activations = [tanh, tanh, relu, relu, relu, sigmoid]
+    # Training the network
+    num_iter = 100
+    debug_iter_num = 2
+    cost_tracker = {
+        "train_x": [],
+        "train_cost": [],
+        "eval_x": [],
+        "eval_cost": []
+    }
+    # Hyperparameters
+    learning_rate = 0.01
+    reg_param_lambda = 2
+
+    for i in range(num_iter):
+        # Forward propagate
+        A_pred, cache = forward_propagate_deep(params, activations, X_train)
+        # Note the cost
+        cost_iter = cost_function(A_pred, Y_train)
+        cost_tracker["train_x"].append(i)
+        cost_tracker["train_cost"].append(cost_iter)
+        if (i + 1) % debug_iter_num == 0 or i == 0:
+            print("TRAIN DEBUG : Cost at iteration {it_num} is {cost}".format(cost=cost_iter, it_num=i + 1))
+            pred_test, _ = forward_propagate_deep(params, activations, X_test)
+            cost_test = cost_function(pred_test, Y_test)
+            cost_tracker["eval_x"].append(i)
+            cost_tracker["eval_cost"].append(cost_test)
+        # Back propagation
+        params = back_propagation_deep(cache, params, activations, Y_train, learning_rate, reg_param_lambda)
+
+    # print(params)
+    # print(forward_propagate_deep(params, activations, X))
+
+    plt.plot(cost_tracker["train_x"], cost_tracker["train_cost"], 'b-',
+             cost_tracker["eval_x"], cost_tracker["eval_cost"], 'g-')
+    plt.legend(["Training", "Evaluation"])
+    plt.show()
+
+    error_test_set(X_test, Y_test, params)
+
+    # Test segment
+    img = cv.imread("../Data/Test.jpg")
+    img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+    img = cv.resize(img, None, fx=1 / 5, fy=1 / 5)
+    X_img = np.ndarray.reshape(img, (-1, 1))
+    pred_test, _ = forward_propagate_deep(params, activations, X_img)
+    print("Prediction on test image is ", pred_test)
+    # Parse everything in the file
+    c = 0
+    t = 0
+    f_dir = "../../DataCollector/Mask_data_collector/Data_Distribution_Generated/False"
+    tp = 0  # True positive
+    fp = 0  # False positive
+    fn = 0  # False negative
+    for filename in os.listdir("{r}".format(r=f_dir)):
+        img = cv.imread("{r}/{f}".format(r=f_dir, f=filename))
+        img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+        img = cv.resize(img, None, fx=1 / 5, fy=1 / 5)
+        X_img = np.reshape(img, (-1, 1))
+        pred_test, _ = forward_propagate_deep(params, activations, X_img)
+        if pred_test > 0.5:
+            c += 1
+        t += 1
+    print("TEST DEBUG : {count} files (out of {tot}) predicted true in 'False'".format(count=c, tot=t))
+    fp = c
+    c = 0
+    t = 0
+    f_dir = "../../DataCollector/Mask_data_collector/Data_Distribution_Generated/True"
+    for filename in os.listdir("{r}".format(r=f_dir)):
+        img = cv.imread("{r}/{f}".format(r=f_dir, f=filename))
+        img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+        img_r = cv.resize(img, None, fx=1 / 5, fy=1 / 5)
+        X_img = np.reshape(img_r, (-1, 1))
+        pred_test, _ = forward_propagate_deep(params, activations, X_img)
+        if pred_test > 0.5:
+            c += 1
+        t += 1
+    print("TEST DEBUG : {count} files (out of {tot}) predicted true in 'True'".format(count=c, tot=t))
+    tp = c
+    fn = t - c
+    prec_score = tp/(tp+fp)
+    rec_score = tp/(tp+fn)
+    print("TEST DEBUG : Precision is {prec} and Recall is {rec}. F1 score is {f_1}".format(
+        prec=prec_score, rec=rec_score, f_1= 2*(prec_score*rec_score)/(prec_score + rec_score)
+    ))
+
+    user_input = input("Save the input ? [Y/N] : ")
+    if user_input == 'Y' or user_input == 'y':
+        f_name = input("Enter file name : ")
+        f_name = "Results/{fn}".format(fn=f_name)
+        with open(f_name, 'wb') as file:
+            pickle.dump([architecture_nn, params], file)
