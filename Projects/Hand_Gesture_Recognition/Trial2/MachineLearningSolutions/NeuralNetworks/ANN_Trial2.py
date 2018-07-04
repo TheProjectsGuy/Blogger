@@ -1,14 +1,19 @@
+"""
+Implemented mini batch gradient descent
+"""
 import numpy as np
 import cv2 as cv
 import pickle
 import os
+
+from jedi.api import exceptions
 from matplotlib import pyplot as plt
 
 np.random.seed(2)
 
 
-def load_dataset(dataset_dir_name="Data", x_name="X.npy",
-                 y_name="Y_one_hot_encoded.npy", one_hot_index=0, shuffle_data=True, normalize_data=True):
+def load_dataset(dataset_dir_name="../Data", x_name="X.npy",
+                 y_name="Y.npy", one_hot_index=-1, shuffle_data=True, normalize_data=True):
     """
     Loads a dataset stored as a .npy file
     :param dataset_dir_name: Name of the folder in which data is
@@ -24,15 +29,18 @@ def load_dataset(dataset_dir_name="Data", x_name="X.npy",
         The output will be shuffled if shuffle_data is True, else it won't be shuffled
     """
     # Load the dataset
-    X = np.load("../{main_root}/{f_name}".format(main_root=dataset_dir_name,
-                                                 f_name=x_name))
+    print("DATA DEBUG : Checking directory \"{r}/{x}\" for inputs and \"{r}/{y}\" for outputs".format(
+        r=dataset_dir_name, x=x_name, y=y_name
+    ))
+    X = np.load("{main_root}/{f_name}".format(main_root=dataset_dir_name,
+                                              f_name=x_name))
     print("DATA DEBUG : Inputs shape is {in_shape}".format(in_shape=X.shape))
     if one_hot_index == -1:
         # Parse the entire dataset as it is
-        Y = np.load("../{main_root}/{f_name}".format(main_root=dataset_dir_name,
-                                                     f_name=y_name))
+        Y = np.load("{main_root}/{f_name}".format(main_root=dataset_dir_name,
+                                                  f_name=y_name))
     elif one_hot_index >= 0:
-        Y_one_hot = np.load("../{main_root}/{f_name}".format(
+        Y_one_hot = np.load("{main_root}/{f_name}".format(
             main_root=dataset_dir_name, f_name=y_name
         ))
         Y = np.array(Y_one_hot[one_hot_index, :].reshape((1, -1)))
@@ -315,7 +323,7 @@ def backward_propagation_grads(cache, params, activations, Y):
 
 
 # Back propagation step
-def back_propagation_deep(cache, params, activations, Y, learning_rate=0.01, reg_lambda=2):
+def back_propagation_deep(cache, params, activations, Y, learning_rate=0.01, reg_lambda=0.2):
     """
     Perform one step of backward propagation
     :param cache: Output and weghed sum of every neuron of every layer in the neural network
@@ -327,6 +335,7 @@ def back_propagation_deep(cache, params, activations, Y, learning_rate=0.01, reg
     :param activations: The list of activation functions of each layer
     :param Y: Output
     :param learning_rate: The learning_rate to use
+    :param reg_lambda: Regularization parameter
     :return: The new parameters of the neural network
         Dictionary
             params["W" + str(l)] : The weights of layer l
@@ -344,66 +353,139 @@ def back_propagation_deep(cache, params, activations, Y, learning_rate=0.01, reg
     return params
 
 
-def error_test_set(test_x, test_y, params):
-    A_pred, _ = forward_propagate_deep(params, activations, test_x)
-    predictions = np.zeros_like(A_pred)
-    predictions[A_pred > 0.5] = 1
-    diff_vector = predictions - test_y
-    diff_vector = np.square(diff_vector)
-    mismatch_vector = diff_vector[diff_vector == 1].reshape((1, -1))
-    print("TEST REPORT : {mis} mismatches out of {tot} test cases".format(mis=mismatch_vector.shape[1],
-                                                                          tot=test_y.shape[1]))
-    print("TEST REPORT : {err}% mismatch error".format(err=mismatch_vector.shape[1] / diff_vector.shape[1] * 100))
+def error_test_set(test_x, test_y, params, activations, threshold=0.5,
+                   show_mismatch_images=True):
+    """
+    To test the performance of the neural network
+    :param test_x: Inputs
+    :param test_y: Desired outputs
+    :param params: Parameters of the neural network
+    :param activations: Activation functions
+    :param threshold: Threshold value wanted
+    :param show_mismatch_images: If you want to view mismatch images
+    :return:
+    None
+    """
+    predictions, _ = forward_propagate_deep(params, activations, test_x)
+    pred_test = np.zeros_like(predictions)
+    pred_test[predictions > threshold] = 1
+    difference_vector = pred_test - test_y
+    difference_vector = np.square(difference_vector)
+    diff_indices = difference_vector.nonzero()[1]
+    print("TEST DEBUG : {num_mismatch} mismatches found at indices {ind}".format(
+        num_mismatch=len(diff_indices), ind=diff_indices
+    ))
+    if show_mismatch_images:
+        for ind in diff_indices:
+            print("TEST DEBUG : Testing image at index {i}".format(i=ind))
+            img = test_x[:, ind].reshape((47, 38))
+            cv.imshow("Index {i}, Y = {y}, A = {a}".format(
+                i=ind, y=test_y[:, ind], a=predictions[:, ind]
+            ), img)
+            while True:
+                key = cv.waitKey(0) & 0xff
+                if key == 27:
+                    exit(0)
+                elif key == ord('n'):
+                    cv.destroyWindow("Index {i}, Y = {y}, A = {a}".format(
+                        i=ind, y=test_y[:, ind], a=predictions[:, ind]))
+                    break
+    cv.destroyAllWindows()
 
 
 def divide_into_mini_batches(X, Y, mini_batch_size, debugger_output=False):
+    """
+    Divide the passed set into buckets (mini batches) of size mini_batch_size
+    :param X: Input examples
+    :param Y: Output of the examples
+    :param mini_batch_size: The mini batch size
+    :param debugger_output: Show debugger output
+    :return:
+        tuple(X_mini_batches, Y_mini_batches)
+            X_mini_batches : Array of input batches
+            Y_mini_batches : Array of output batches
+    """
     m = Y.shape[1]
     n_batches = m // mini_batch_size
     if debugger_output:
         print("DATA DEBUG : Dividing {num} examples into batches of size {batch_s}. {n_b} full batches".format(
-        num=m, batch_s=mini_batch_size, n_b = n_batches
-    ))
+            num=m, batch_s=mini_batch_size, n_b=n_batches
+        ))
     X_mini_batches = []
     Y_mini_batches = []
     for i in range(n_batches):
-        X_mini_batches.append(X[:, i * mini_batch_size : (i + 1) * mini_batch_size])
-        Y_mini_batches.append(Y[:, i * mini_batch_size : (i + 1) * mini_batch_size])
+        X_mini_batches.append(X[:, i * mini_batch_size: (i + 1) * mini_batch_size])
+        Y_mini_batches.append(Y[:, i * mini_batch_size: (i + 1) * mini_batch_size])
     if m % mini_batch_size != 0:
-        X_mini_batches.append(X[:, n_batches * mini_batch_size : ])
-        Y_mini_batches.append(Y[:, n_batches * mini_batch_size : ])
+        X_mini_batches.append(X[:, n_batches * mini_batch_size:])
+        Y_mini_batches.append(Y[:, n_batches * mini_batch_size:])
     return (X_mini_batches, Y_mini_batches)
 
 
+# Network configurations dictionary
+net_config = {
+    "data": {
+        "dir_name": "../Data/Global",
+        "x_name": "X.npy",
+        "y_name": "Y_one_hot_encoded.npy",
+        "one_hot_index": 1,
+        "dist_train_dev_test": (900, 0, 21)
+    },
+    "nn_arc": {
+        "layers": (100, 50, 5, 1),
+        "activations": [tanh, relu, tanh, sigmoid]
+    },
+    "hyperparameters": {
+        "training_iterations": 20,
+        "debug_num_iter": 100,
+        "learning_rate": 0.01,
+        "regularization_parameter": 1.2,
+        "num_epochs": 100,
+        "mini_batch_size": 90,
+        "threshold": 0.9
+    },
+    "testing": {
+        "test_image": "../Data/4_Fingers/M_23.jpg",
+        "false_examples": "../../DataCollector/Mask_data_collector/Data_Distribution_Generated/False",
+        "true_examples": "../../DataCollector/Mask_data_collector/Data_Distribution_Generated/True",
+        "show_mismatches": True,
+        "live_trial_mode": True
+    }
+}
+
 if __name__ == '__main__':
     # Load data into memory
-    X, Y = load_dataset(y_name="Y.npy", one_hot_index=-1)
-    datasets = split_train_dev_test(X, Y, (900, 0, 21))
+    X, Y = load_dataset(dataset_dir_name=net_config["data"]["dir_name"], x_name=net_config["data"]["x_name"],
+                        y_name=net_config["data"]["y_name"], one_hot_index=net_config["data"]["one_hot_index"])
+    datasets = split_train_dev_test(X, Y, net_config["data"]["dist_train_dev_test"])
     X_train, Y_train = datasets["train"]
     X_dev, Y_dev = datasets["dev"]
     X_test, Y_test = datasets["test"]
     # Load weights and activation functions
     nn_architecture = {
-        "layers":(100, 50, 50, 50, 5, 1),
-        "activations":[tanh, tanh, relu, relu, relu, sigmoid]
-
+        "layers": net_config["nn_arc"]["layers"],
+        "activations": net_config["nn_arc"]["activations"]
     }
     architecture_nn, params = init_params_deep(X.shape[0], nn_architecture["layers"])
     activations = nn_architecture["activations"]
-
     # Training the network
     # Hyperparameters
-    num_iter = 100
-    debug_iter_num = 100
-    learning_rate = 0.01
-    reg_param_lambda = 0.1
-    num_epochs = 20
-    mini_batch_size = 20
+    num_iter = net_config["hyperparameters"]["training_iterations"]
+    debug_iter_num = net_config["hyperparameters"]["debug_num_iter"]
+    learning_rate = net_config["hyperparameters"]["learning_rate"]
+    reg_param_lambda = net_config["hyperparameters"]["regularization_parameter"]
+    num_epochs = net_config["hyperparameters"]["num_epochs"]
+    mini_batch_size = net_config["hyperparameters"]["mini_batch_size"]
     cost_tracker = {
         "train_x": [],
         "train_cost": [],
         "eval_x": [],
         "eval_cost": []
     }
+    print("TRAIN DEBUG : {it} training iterations required".format(
+        it=int(num_iter * num_epochs * X_train.shape[1] / mini_batch_size)
+    ))
+    # Main training process
     for train_iter_num in range(num_iter):
         X_training, Y_training = shuffle_dataset(X_train, Y_train)
         (X_training_batches, Y_training_batches) = divide_into_mini_batches(X_training, Y_training, mini_batch_size)
@@ -420,11 +502,12 @@ if __name__ == '__main__':
                 cost_tracker["train_x"].append(i)
                 cost_tracker["train_cost"].append(cost_iter)
                 if i % debug_iter_num == 0 or i == 0:
-                    print("TRAIN DEBUG : Cost at iteration {it_num} is {cost}".format(cost=cost_iter, it_num=i))
                     pred_test, _ = forward_propagate_deep(params, activations, X_test)
-                    cost_test = cost_function(pred_test, Y_test)
+                    eval_cost = cost_function(pred_test, Y_test)
                     cost_tracker["eval_x"].append(i)
-                    cost_tracker["eval_cost"].append(cost_test)
+                    cost_tracker["eval_cost"].append(eval_cost)
+                    print("TRAIN DEBUG : Cost at iteration {it_num} is {cost}\t Test cost is {test_cost}".format(
+                        cost=cost_iter, it_num=i, test_cost=eval_cost))
                 # Back propagation
                 params = back_propagation_deep(cache_mini_batch, params, activations, Y_training_batch,
                                                learning_rate, reg_param_lambda)
@@ -437,55 +520,79 @@ if __name__ == '__main__':
     plt.legend(["Training", "Evaluation"])
     plt.show()
 
-    error_test_set(X_test, Y_test, params)
+    error_test_set(X_test, Y_test, params, activations,
+                   show_mismatch_images=net_config["testing"]["show_mismatches"])
 
     # Test segment
-    img = cv.imread("../Data/Test.jpg")
-    img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-    img = cv.resize(img, None, fx=1 / 5, fy=1 / 5)
-    X_img = np.ndarray.reshape(img, (-1, 1))
-    pred_test, _ = forward_propagate_deep(params, activations, X_img)
-    print("Prediction on test image is ", pred_test)
-    # Parse everything in the file
-    c = 0
-    t = 0
-    f_dir = "../../DataCollector/Mask_data_collector/Data_Distribution_Generated/False"
-    tp = 0  # True positive
-    fp = 0  # False positive
-    fn = 0  # False negative
-    for filename in os.listdir("{r}".format(r=f_dir)):
-        img = cv.imread("{r}/{f}".format(r=f_dir, f=filename))
+    try:
+        img = cv.imread(net_config["testing"]["test_image"])
         img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+        cv.imshow("Test image", img)
         img = cv.resize(img, None, fx=1 / 5, fy=1 / 5)
-        X_img = np.reshape(img, (-1, 1))
+        X_img = np.ndarray.reshape(img, (-1, 1))
         pred_test, _ = forward_propagate_deep(params, activations, X_img)
-        if pred_test > 0.5:
-            c += 1
-        t += 1
-    print("TEST DEBUG : {count} files (out of {tot}) predicted true in 'False'".format(count=c, tot=t))
-    fp = c
-    c = 0
-    t = 0
-    f_dir = "../../DataCollector/Mask_data_collector/Data_Distribution_Generated/True"
-    for filename in os.listdir("{r}".format(r=f_dir)):
-        img = cv.imread("{r}/{f}".format(r=f_dir, f=filename))
-        img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-        img_r = cv.resize(img, None, fx=1 / 5, fy=1 / 5)
-        X_img = np.reshape(img_r, (-1, 1))
-        pred_test, _ = forward_propagate_deep(params, activations, X_img)
-        if pred_test > 0.5:
-            c += 1
-        t += 1
-    print("TEST DEBUG : {count} files (out of {tot}) predicted true in 'True'".format(count=c, tot=t))
-    tp = c
-    fn = t - c
-    prec_score = tp / (tp + fp)
-    rec_score = tp / (tp + fn)
-    print("TEST DEBUG : Precision is {prec} and Recall is {rec}. F1 score is {f_1}".format(
-        prec=prec_score, rec=rec_score, f_1=2 * (prec_score * rec_score) / (prec_score + rec_score)
-    ))
-
-    user_input = input("Save the input ? [Y/N] : ")
+        print("Prediction on test image is ", pred_test)
+        cv.destroyAllWindows()
+    except Exception:
+        cv.destroyAllWindows()
+    # Test over all the examples in the directories
+    try:
+        # Parse everything in the file
+        c = 0
+        t = 0
+        f_dir = net_config["testing"]["false_examples"]
+        tp = 0  # True positive
+        fp = 0  # False positive
+        fn = 0  # False negative
+        for filename in os.listdir("{r}".format(r=f_dir)):
+            img = cv.imread("{r}/{f}".format(r=f_dir, f=filename))
+            img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+            img = cv.resize(img, None, fx=1 / 5, fy=1 / 5)
+            X_img = np.reshape(img, (-1, 1))
+            pred_test, _ = forward_propagate_deep(params, activations, X_img)
+            if pred_test > net_config["hyperparameters"]["threshold"]:
+                c += 1
+            t += 1
+        print("TEST DEBUG : {count} files (out of {tot}) predicted true in 'False'".format(count=c, tot=t))
+        fp = c
+        c = 0
+        t = 0
+        f_dir = net_config["testing"]["true_examples"]
+        for filename in os.listdir("{r}".format(r=f_dir)):
+            img = cv.imread("{r}/{f}".format(r=f_dir, f=filename))
+            img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+            img_r = cv.resize(img, None, fx=1 / 5, fy=1 / 5)
+            X_img = np.reshape(img_r, (-1, 1))
+            pred_test, _ = forward_propagate_deep(params, activations, X_img)
+            if pred_test > net_config["hyperparameters"]["threshold"]:
+                c += 1
+            t += 1
+        print("TEST DEBUG : {count} files (out of {tot}) predicted true in 'True'".format(count=c, tot=t))
+        tp = c
+        fn = t - c
+        prec_score = tp / (tp + fp)
+        rec_score = tp / (tp + fn)
+        print("TEST DEBUG : Precision is {prec} and Recall is {rec}. F1 score is {f_1}".format(
+            prec=prec_score, rec=rec_score, f_1=2 * (prec_score * rec_score) / (prec_score + rec_score)
+        ))
+    except FileNotFoundError:
+        print("File not found")
+    if net_config["testing"]["live_trial_mode"]:    # Try out your own images
+        input("Put all test images in folder \"Trial_Images\" and press enter")
+        # Check out the trial folder and report result for every image
+        for filename in os.listdir("Trial_Images"):
+            full_filename = "{r}/{f}".format(r="Trial_Images", f=filename)
+            img = cv.imread(full_filename)
+            img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+            img_s = cv.resize(img, None, fx=1/5, fy=1/5)
+            _, img_s = cv.threshold(img_s, 127, 255, cv.THRESH_BINARY)
+            img_x = img_s.reshape((-1, 1))
+            pred, _ = forward_propagate_deep(params, activations, img_x)
+            cv.imshow("{f} A = {a}".format(f=filename, a=pred), img)
+            print("TEST DEBUG : File \"{f}\"".format(f=full_filename))
+            cv.waitKey(0)
+            cv.destroyAllWindows()
+    user_input = input("Save the network architecture and parameters ? [Y/N] : ")
     if user_input == 'Y' or user_input == 'y':
         f_name = input("Enter file name : ")
         f_name = "Results/{fn}".format(fn=f_name)

@@ -40,6 +40,7 @@ for label_directory in sorted(os.listdir("{r}/".format(r=data_folder_name))):
     num = 0
     # Iterate over every image file
     for file_name in os.listdir("{r}/{lb}/".format(r=data_folder_name, lb=label_directory)):
+        print("DATA DEBUG : Processing image {n}".format(n=num))
         img = cv.imread("{r}/{lb}/{f}".format(r=data_folder_name,
                                              lb=label_directory, f=file_name))
         img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
@@ -91,7 +92,7 @@ for label_directory in sorted(os.listdir("{r}/".format(r=data_folder_name))):
             Y_one_hot = np.column_stack((Y_one_hot, Y_one_hot_buffer))
         num += 1
         # Ending code
-        key = cv.waitKey(1) & 0xFF
+        key = cv.waitKey(10) & 0xFF
         if key == ord('s'):  # Skip this folder
             break
         elif key == ord('i'):  # Information about a file
