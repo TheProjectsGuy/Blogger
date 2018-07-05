@@ -3,6 +3,7 @@ import os
 
 directory = 'Data/'
 
+# Starting Indexing number
 no = 0
 for filename in os.listdir(directory):
     if filename.startswith('mask'):
