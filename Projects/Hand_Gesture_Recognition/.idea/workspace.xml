@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="75d4d770-f305-4f3f-b9ab-e8f74e9a2774" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Trial2/MachineLearningSolutions/NeuralNetworks/.ipynb_checkpoints/ANN_Jupyter_notebook-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trial2/MachineLearningSolutions/NeuralNetworks/.ipynb_checkpoints/ANN_Jupyter_notebook-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trial2/MachineLearningSolutions/NeuralNetworks/ANN_Jupyter_notebook.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trial2/MachineLearningSolutions/NeuralNetworks/ANN_Jupyter_notebook.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trial2/MachineLearningSolutions/NeuralNetworks/ANN_Trial1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trial2/MachineLearningSolutions/NeuralNetworks/ANN_Trial1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trial2/MachineLearningSolutions/NeuralNetworks/ANN_Trial3.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trial2/MachineLearningSolutions/NeuralNetworks/ANN_Trial3.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,27 +13,102 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Trial.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Trial2/MachineLearningSolutions/Trial.py">
+      <file leaf-file-name="ANN_Trial3.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Trial2/MachineLearningSolutions/NeuralNetworks/ANN_Trial3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Perceptron_5.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Trial2/MachineLearningSolutions/Perceptron/Perceptron_5.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="ANN_Trial1.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Trial2/MachineLearningSolutions/NeuralNetworks/ANN_Trial1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3518">
-              <caret line="390" column="45" selection-start-line="390" selection-start-column="45" selection-end-line="390" selection-end-column="45" />
+            <state relative-caret-position="282">
+              <caret line="242" column="70" selection-start-line="242" selection-start-column="70" selection-end-line="242" selection-end-column="70" />
               <folding>
-                <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#0#27#1" />
+                <element signature="e#336#2245#0" />
+                <element signature="e#336#966#1" />
+                <element signature="e#1397#1576#0" />
+                <element signature="e#1614#1796#0" />
+                <element signature="e#2279#2524#0" />
+                <element signature="e#2587#3756#0" />
+                <element signature="e#2587#2856#1" />
+                <element signature="e#3631#3739#0" />
+                <element signature="e#3808#4741#0" />
+                <element signature="e#3808#4286#1" />
+                <element signature="e#4546#4711#0" />
+                <element signature="e#4784#5301#0" />
+                <element signature="e#4784#5068#1" />
+                <element signature="e#5158#5254#0" />
+                <element signature="e#5346#6033#0" />
+                <element signature="e#5346#5509#1" />
+                <element signature="e#5548#5691#0" />
+                <element signature="e#5548#5655#1" />
+                <element signature="e#5732#5908#0" />
+                <element signature="e#5732#5845#1" />
+                <element signature="e#5926#6012#0" />
+                <element signature="e#6052#6808#0" />
+                <element signature="e#6052#6244#1" />
+                <element signature="e#6280#6447#0" />
+                <element signature="e#6280#6372#1" />
+                <element signature="e#6485#6689#0" />
+                <element signature="e#6485#6592#1" />
+                <element signature="e#6707#6787#0" />
+                <element signature="e#6827#7267#0" />
+                <element signature="e#6827#7023#1" />
+                <element signature="e#7059#7076#0" />
+                <element signature="e#7114#7148#0" />
+                <element signature="e#7166#7246#0" />
+                <element signature="e#7372#8843#0" />
+                <element signature="e#7372#8184#1" />
+                <element signature="e#8319#8783#0" />
+                <element signature="e#8554#8783#0" />
+                <element signature="e#8896#9214#0" />
+                <element signature="e#8896#9089#1" />
+                <element signature="e#9316#11340#0" />
+                <element signature="e#9316#10084#1" />
+                <element signature="e#10348#10607#0" />
+                <element signature="e#10797#11040#0" />
+                <element signature="e#11154#11323#0" />
+                <element signature="e#11465#12882#0" />
+                <element signature="e#11465#12313#1" />
+                <element signature="e#12547#12864#0" />
+                <element signature="e#13007#14508#0" />
+                <element signature="e#13007#13362#1" />
+                <element signature="e#13851#14481#0" />
+                <element signature="e#13888#14481#0" />
+                <element signature="e#14185#14481#0" />
+                <element signature="e#14328#14481#0" />
+                <element signature="e#14591#15724#0" />
+                <element signature="e#14591#15007#1" />
+                <element signature="e#15096#15268#0" />
+                <element signature="e#15356#15515#0" />
+                <element signature="e#15557#15680#0" />
+                <element signature="e#15776#16920#0" />
+                <element signature="e#15790#15965#0" />
+                <element signature="e#15981#16094#0" />
+                <element signature="e#16119#16406#0" />
+                <element signature="e#16423#16918#0" />
+                <element signature="e#16503#16662#0" />
+                <element signature="e#16689#16846#0" />
+                <element signature="e#16963#17498#0" />
+                <element signature="e#16963#17238#1" />
+                <element signature="e#17322#17482#0" />
+                <element signature="e#17537#17848#0" />
+                <element signature="e#17578#17830#0" />
+                <element signature="e#17881#26131#0" />
+                <element signature="e#18392#18508#0" />
+                <element signature="e#18648#18670#0" />
+                <element signature="e#19194#19296#0" />
+                <element signature="e#19590#21694#0" />
+                <element signature="e#19641#21694#0" />
+                <element signature="e#19950#21694#0" />
+                <element signature="e#20142#21694#0" />
+                <element signature="e#20804#21258#0" />
+                <element signature="e#21594#21694#0" />
+                <element signature="e#21808#21823#0" />
+                <element signature="e#22266#22603#0" />
+                <element signature="e#22634#22772#0" />
+                <element signature="e#22842#24637#0" />
+                <element signature="e#23126#23529#0" />
+                <element signature="e#23807#24214#0" />
+                <element signature="e#24786#25597#0" />
+                <element signature="e#24993#25597#0" />
+                <element signature="e#25777#26131#0" />
               </folding>
             </state>
           </provider>
@@ -61,6 +134,7 @@
         <option value="$PROJECT_DIR$/Trial2/MachineLearningSolutions/Perceptron/Perceptron_model_5_fingers_detection.ipynb" />
         <option value="$PROJECT_DIR$/Trial2/MachineLearningSolutions/Trial.py" />
         <option value="$PROJECT_DIR$/Trial2/MachineLearningSolutions/NeuralNetworks/ANN_Trial1.py" />
+        <option value="$PROJECT_DIR$/Trial2/MachineLearningSolutions/NeuralNetworks/ANN_Trial3.py" />
       </list>
     </option>
   </component>
@@ -76,7 +150,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -106,6 +179,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -235,8 +309,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="59" y="25" width="1861" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2529924" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2529924" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" />
@@ -264,6 +339,26 @@
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Trial2/MachineLearningSolutions/Trial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trial2/MachineLearningSolutions/Perceptron/Perceptron_5.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trial2/MachineLearningSolutions/NeuralNetworks/ANN_Trial1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5850">
+          <caret line="390" column="45" selection-start-line="390" selection-start-column="45" selection-end-line="390" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Trial2/MachineLearningSolutions/Trial.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -313,22 +408,121 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Trial2/MachineLearningSolutions/Trial.py">
+    <entry file="file://$PROJECT_DIR$/Trial2/MachineLearningSolutions/NeuralNetworks/ANN_Trial1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="312">
+          <caret line="343" column="43" lean-forward="true" selection-start-line="343" selection-start-column="43" selection-end-line="343" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Trial2/MachineLearningSolutions/Perceptron/Perceptron_5.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Trial2/MachineLearningSolutions/NeuralNetworks/ANN_Trial1.py">
+    <entry file="file://$PROJECT_DIR$/Trial2/MachineLearningSolutions/Trial.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3518">
-          <caret line="390" column="45" selection-start-line="390" selection-start-column="45" selection-end-line="390" selection-end-column="45" />
+        <state relative-caret-position="210">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trial2/MachineLearningSolutions/NeuralNetworks/ANN_Trial3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="242" column="70" selection-start-line="242" selection-start-column="70" selection-end-line="242" selection-end-column="70" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#27#1" />
+            <element signature="e#336#2245#0" />
+            <element signature="e#336#966#1" />
+            <element signature="e#1397#1576#0" />
+            <element signature="e#1614#1796#0" />
+            <element signature="e#2279#2524#0" />
+            <element signature="e#2587#3756#0" />
+            <element signature="e#2587#2856#1" />
+            <element signature="e#3631#3739#0" />
+            <element signature="e#3808#4741#0" />
+            <element signature="e#3808#4286#1" />
+            <element signature="e#4546#4711#0" />
+            <element signature="e#4784#5301#0" />
+            <element signature="e#4784#5068#1" />
+            <element signature="e#5158#5254#0" />
+            <element signature="e#5346#6033#0" />
+            <element signature="e#5346#5509#1" />
+            <element signature="e#5548#5691#0" />
+            <element signature="e#5548#5655#1" />
+            <element signature="e#5732#5908#0" />
+            <element signature="e#5732#5845#1" />
+            <element signature="e#5926#6012#0" />
+            <element signature="e#6052#6808#0" />
+            <element signature="e#6052#6244#1" />
+            <element signature="e#6280#6447#0" />
+            <element signature="e#6280#6372#1" />
+            <element signature="e#6485#6689#0" />
+            <element signature="e#6485#6592#1" />
+            <element signature="e#6707#6787#0" />
+            <element signature="e#6827#7267#0" />
+            <element signature="e#6827#7023#1" />
+            <element signature="e#7059#7076#0" />
+            <element signature="e#7114#7148#0" />
+            <element signature="e#7166#7246#0" />
+            <element signature="e#7372#8843#0" />
+            <element signature="e#7372#8184#1" />
+            <element signature="e#8319#8783#0" />
+            <element signature="e#8554#8783#0" />
+            <element signature="e#8896#9214#0" />
+            <element signature="e#8896#9089#1" />
+            <element signature="e#9316#11340#0" />
+            <element signature="e#9316#10084#1" />
+            <element signature="e#10348#10607#0" />
+            <element signature="e#10797#11040#0" />
+            <element signature="e#11154#11323#0" />
+            <element signature="e#11465#12882#0" />
+            <element signature="e#11465#12313#1" />
+            <element signature="e#12547#12864#0" />
+            <element signature="e#13007#14508#0" />
+            <element signature="e#13007#13362#1" />
+            <element signature="e#13851#14481#0" />
+            <element signature="e#13888#14481#0" />
+            <element signature="e#14185#14481#0" />
+            <element signature="e#14328#14481#0" />
+            <element signature="e#14591#15724#0" />
+            <element signature="e#14591#15007#1" />
+            <element signature="e#15096#15268#0" />
+            <element signature="e#15356#15515#0" />
+            <element signature="e#15557#15680#0" />
+            <element signature="e#15776#16920#0" />
+            <element signature="e#15790#15965#0" />
+            <element signature="e#15981#16094#0" />
+            <element signature="e#16119#16406#0" />
+            <element signature="e#16423#16918#0" />
+            <element signature="e#16503#16662#0" />
+            <element signature="e#16689#16846#0" />
+            <element signature="e#16963#17498#0" />
+            <element signature="e#16963#17238#1" />
+            <element signature="e#17322#17482#0" />
+            <element signature="e#17537#17848#0" />
+            <element signature="e#17578#17830#0" />
+            <element signature="e#17881#26131#0" />
+            <element signature="e#18392#18508#0" />
+            <element signature="e#18648#18670#0" />
+            <element signature="e#19194#19296#0" />
+            <element signature="e#19590#21694#0" />
+            <element signature="e#19641#21694#0" />
+            <element signature="e#19950#21694#0" />
+            <element signature="e#20142#21694#0" />
+            <element signature="e#20804#21258#0" />
+            <element signature="e#21594#21694#0" />
+            <element signature="e#21808#21823#0" />
+            <element signature="e#22266#22603#0" />
+            <element signature="e#22634#22772#0" />
+            <element signature="e#22842#24637#0" />
+            <element signature="e#23126#23529#0" />
+            <element signature="e#23807#24214#0" />
+            <element signature="e#24786#25597#0" />
+            <element signature="e#24993#25597#0" />
+            <element signature="e#25777#26131#0" />
           </folding>
         </state>
       </provider>

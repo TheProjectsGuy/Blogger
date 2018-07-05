@@ -498,6 +498,7 @@ def get_activations_list(acts):
             act_fs.append(tanh)
     return act_fs
 
+
 if __name__ == '__main__':
     # Load data into memory
     X, Y = load_dataset(dataset_dir_name=net_config["data"]["dir_name"], x_name=net_config["data"]["x_name"],
