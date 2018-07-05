@@ -27,9 +27,9 @@ Get a uniform background for this
   1. If you're satisfied with the mask, and the colour result, press `s` key to save the mask and image. You'll observe that two new images have been created in the `Data` folder.
   2. If you're not satisfied with the mask, press `r` to reset the mask and take it again.
 5. After saving as many masks as needed, exit the program by pressing `q`.
-6. Check the **Data** folder, you'll find two files for every snap taken. One mask and other coloured. FIle starting with _mask_ is the mask and file starting with _rect_ is the colour frame.
-![Step 5](Info/Step5.png "Step 5")
+6. Check the **Data** folder, you'll find two files for every snap taken. One mask and other coloured. FIle starting with _mask_ is the mask and file starting with _rect_ is the colour frame.<br>
+<center> ![Step 5](Info/Step5.png "Step 5") </center>
 7. Open *FileFinder.py* and run the program, it deletes the colour frame and saves the mask frame with a name of pattern M_\*.jpg in the same directory as these codes. You can set the index number to match the previously recorded data. For example, if the latest file in Data/<Your classification folder> is M_23.jpg, then set the value of starting index to 24. After that, move the file in the label subfolder.
 8. If you want to generate augmented data by flipping all training examples horizontally, open the file *DataManip.py* and run it once, it'll create two folders.
-  1. **Data_augmented** : Has all the images in the same labelled folder with their horizontally flipped version.
-  2. **Data_numpy_files** : Has three files, *X.npy* contains the numpy array of inputs (column stacked), *Y.npy* contains the numpy array of outputs (indexed labels) and *Y_one_hot_encoded.npy* contans one hot encoded outputs of every example.
+  - **Data_augmented** : Has all the images in the same labelled folder with their horizontally flipped version.
+  - **Data_numpy_files** : Has three files, *X.npy* contains the numpy array of inputs (column stacked), *Y.npy* contains the numpy array of outputs (indexed labels) and *Y_one_hot_encoded.npy* contans one hot encoded outputs of every example.
