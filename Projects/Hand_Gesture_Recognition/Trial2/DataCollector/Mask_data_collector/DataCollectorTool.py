@@ -4,6 +4,7 @@ Created by Avneesh on 18/6/18
 import cv2 as cv
 import numpy as np
 
+# Adjustable parameter : Camera number
 cam_no = 0
 cam = cv.VideoCapture(cam_no)
 # Your declaration or starting code here
@@ -22,7 +23,7 @@ upper_threshold = 50  # Threshold for detection of moving objects
 lower_threshold = 10
 
 rect_shape = (190, 235)             # width, height
-rect_center_exact = (140, 235.5)    # c_x, c_y
+rect_center_exact = (140, 235.5)    # Adjustable parameter : c_x, c_y
 rect_center = (int(rect_center_exact[0]), int(rect_center_exact[1]))
 rect_pt1 = (int(rect_center_exact[0] - rect_shape[0]/2),
             int(rect_center_exact[1] - rect_shape[1]/2))
@@ -41,6 +42,10 @@ print("Initialised camera {cam_number}.\n".format(cam_number= cam_no),
           y_min= rect_shape[1]/2, y_max= img.shape[0] - rect_shape[1]/2),
       sep=''
       )
+print("Press \'q\' or ESC to exit (ESC to emergency exit)\n"
+      "Press \'p\' to pause feed (\'p\' again to resume)\n"
+      "Press \'r\' to reset mask\n"
+      "Press \'s\' to save the mask and the image\n")
 
 pass
 
