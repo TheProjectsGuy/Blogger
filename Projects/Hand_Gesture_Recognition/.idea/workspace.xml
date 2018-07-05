@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="75d4d770-f305-4f3f-b9ab-e8f74e9a2774" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/R_User_Library.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Hand_Gesture_Recognition.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Hand_Gesture_Recognition.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trial2/DataCollector/Mask_data_collector/ContourDataCollector.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trial2/DataCollector/Mask_data_collector/DataCollectorTool.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trial2/DataCollector/Mask_data_collector/FileFinder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trial2/DataCollector/Mask_data_collector/FileFinder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trial2/DataCollector/Mask_data_collector/FileHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trial2/DataCollector/Mask_data_collector/FileHandler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trial2/DataCollector/Mask_data_collector/Index.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Trial2/DataCollector/Mask_data_collector/Index.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Trial2/DataCollector/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Trial2/DataCollector/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,11 +54,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataManip.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DataManip.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Trial2/DataCollector/Mask_data_collector/DataManip.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="388">
               <caret line="129" column="54" selection-start-line="129" selection-start-column="54" selection-end-line="129" selection-end-column="54" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Trial2/DataCollector/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="445">
+                <caret line="34" column="245" selection-start-line="34" selection-start-column="245" selection-end-line="34" selection-end-column="245" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -103,6 +108,7 @@
         <option value="$PROJECT_DIR$/Trial2/DataCollector/Mask_data_collector/DataCollectorTool.py" />
         <option value="$PROJECT_DIR$/Trial2/DataCollector/Mask_data_collector/DataManip.py" />
         <option value="$PROJECT_DIR$/Trial2/DataCollector/Mask_data_collector/FileFinder.py" />
+        <option value="$PROJECT_DIR$/Trial2/DataCollector/README.md" />
       </list>
     </option>
   </component>
@@ -135,21 +141,6 @@
               <item name="Hand_Gesture_Recognition" type="462c0819:PsiDirectoryNode" />
               <item name="Trial2" type="462c0819:PsiDirectoryNode" />
               <item name="DataCollector" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Hand_Gesture_Recognition" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Hand_Gesture_Recognition" type="462c0819:PsiDirectoryNode" />
-              <item name="Trial2" type="462c0819:PsiDirectoryNode" />
-              <item name="DataCollector" type="462c0819:PsiDirectoryNode" />
-              <item name="Mask_data_collector" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Hand_Gesture_Recognition" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Hand_Gesture_Recognition" type="462c0819:PsiDirectoryNode" />
-              <item name="Trial2" type="462c0819:PsiDirectoryNode" />
-              <item name="DataCollector" type="462c0819:PsiDirectoryNode" />
-              <item name="Mask_data_collector" type="462c0819:PsiDirectoryNode" />
-              <item name="Data" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -612,6 +603,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="388">
           <caret line="129" column="54" selection-start-line="129" selection-start-column="54" selection-end-line="129" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Trial2/DataCollector/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="445">
+            <caret line="34" column="245" selection-start-line="34" selection-start-column="245" selection-end-line="34" selection-end-column="245" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
