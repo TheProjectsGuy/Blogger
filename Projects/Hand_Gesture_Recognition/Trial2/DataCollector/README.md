@@ -30,6 +30,7 @@ Get a uniform background for this
 6. Check the **Data** folder, you'll find two files for every snap taken. One mask and other coloured. File starting with _mask_ is the mask and file starting with _rect_ is the colour frame.
 
 ![Step 5](Info/Step5.png "Step 5")
+
 7. Open *FileFinder.py* and run the program, it deletes the colour frame and saves the mask frame with a name of pattern M_\*.jpg in the same directory as these codes. You can set the index number to match the previously recorded data. For example, if the latest file in Data/<Your classification folder> is M_23.jpg, then set the value of starting index to 24. After that, move the file in the label subfolder.
 8. If you want to generate augmented data by flipping all training examples horizontally, open the file *DataManip.py* and run it once, it'll create two folders.
   - **Data_augmented** : Has all the images in the same labelled folder with their horizontally flipped version.
