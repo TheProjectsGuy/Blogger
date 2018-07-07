@@ -57,6 +57,13 @@ def load_dataset(dataset_dir_name="../Data", x_name="X.npy",
 
 
 def shuffle_dataset(X, Y):
+    """
+    Shuffle the dataset X, Y
+    :param X: Inputs
+    :param Y: Output Labels
+    :return:
+        Tuple of shuffled inputs and outputs
+    """
     buffer_data = np.row_stack((X, Y))
     buffer_data = buffer_data.T
     np.random.shuffle(buffer_data)
@@ -255,7 +262,7 @@ def softmax():
             Softmax applied column wise to the matrix
         """
         t = np.exp(x)
-        s_t = np.sum(t, axis=1, keepdims=True)
+        s_t = np.sum(t, axis=0, keepdims=True)
         return t/s_t
 
     def softmax_derivative(x):
