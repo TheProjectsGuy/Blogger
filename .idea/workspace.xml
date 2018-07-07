@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="00ebd6e0-1204-4800-b7c2-ecec7d882500" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Projects/Hand_Gesture_Recognition/Trial2/MachineLearningSolutions/Data/X.npy" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Projects/Hand_Gesture_Recognition/Trial2/MachineLearningSolutions/Data/Y.npy" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Projects/Hand_Gesture_Recognition/Trial2/MachineLearningSolutions/Data/Y_one_hot_encoded.npy" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projects/Hand_Gesture_Recognition/Trial2/MachineLearningSolutions/NeuralNetworks/ANN_Trial3.py" afterPath="$PROJECT_DIR$/Projects/Hand_Gesture_Recognition/Trial2/MachineLearningSolutions/NeuralNetworks/ANN_Trial3.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projects/Hand_Gesture_Recognition/Trial2/MachineLearningSolutions/NeuralNetworks/Jupyter_Notebook/.ipynb_checkpoints/ANN_Jupyter_notebook-checkpoint.ipynb" afterPath="$PROJECT_DIR$/Projects/Hand_Gesture_Recognition/Trial2/MachineLearningSolutions/NeuralNetworks/Jupyter_Notebook/.ipynb_checkpoints/ANN_Jupyter_notebook-checkpoint.ipynb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Projects/Hand_Gesture_Recognition/Trial2/MachineLearningSolutions/NeuralNetworks/Jupyter_Notebook/ANN_Jupyter_notebook.ipynb" afterPath="$PROJECT_DIR$/Projects/Hand_Gesture_Recognition/Trial2/MachineLearningSolutions/NeuralNetworks/Jupyter_Notebook/ANN_Jupyter_notebook.ipynb" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="ANN_Trial3.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Projects/Hand_Gesture_Recognition/Trial2/MachineLearningSolutions/NeuralNetworks/ANN_Trial3.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="316">
+              <caret line="363" column="46" lean-forward="false" selection-start-line="363" selection-start-column="46" selection-end-line="363" selection-end-column="46" />
+              <folding>
+                <element signature="e#0#27#1" expanded="false" />
+                <element signature="e#336#2245#0" expanded="false" />
+                <element signature="e#336#966#1" expanded="false" />
+                <element signature="e#1397#1576#0" expanded="false" />
+                <element signature="e#1614#1796#0" expanded="false" />
+                <element signature="e#2279#2524#0" expanded="false" />
+                <element signature="e#2587#3756#0" expanded="false" />
+                <element signature="e#2587#2856#1" expanded="false" />
+                <element signature="e#3631#3739#0" expanded="false" />
+                <element signature="e#3808#4741#0" expanded="false" />
+                <element signature="e#3808#4286#1" expanded="false" />
+                <element signature="e#4546#4711#0" expanded="false" />
+                <element signature="e#4784#5301#0" expanded="false" />
+                <element signature="e#4784#5068#1" expanded="false" />
+                <element signature="e#5158#5254#0" expanded="false" />
+                <element signature="e#5346#6033#0" expanded="false" />
+                <element signature="e#5346#5509#1" expanded="false" />
+                <element signature="e#5548#5691#0" expanded="false" />
+                <element signature="e#5548#5655#1" expanded="false" />
+                <element signature="e#5732#5908#0" expanded="false" />
+                <element signature="e#5732#5845#1" expanded="false" />
+                <element signature="e#5926#6012#0" expanded="false" />
+                <element signature="e#6052#6808#0" expanded="false" />
+                <element signature="e#6052#6244#1" expanded="false" />
+                <element signature="e#6280#6447#0" expanded="false" />
+                <element signature="e#6280#6372#1" expanded="false" />
+                <element signature="e#6485#6689#0" expanded="false" />
+                <element signature="e#6485#6592#1" expanded="false" />
+                <element signature="e#6707#6787#0" expanded="false" />
+                <element signature="e#6827#7267#0" expanded="false" />
+                <element signature="e#6827#7023#1" expanded="false" />
+                <element signature="e#7059#7076#0" expanded="false" />
+                <element signature="e#7114#7148#0" expanded="false" />
+                <element signature="e#7166#7246#0" expanded="false" />
+                <element signature="e#7372#8843#0" expanded="false" />
+                <element signature="e#7372#8184#1" expanded="false" />
+                <element signature="e#8319#8783#0" expanded="false" />
+                <element signature="e#8554#8783#0" expanded="false" />
+                <element signature="e#8896#9214#0" expanded="false" />
+                <element signature="e#8896#9089#1" expanded="false" />
+                <element signature="e#9316#11340#0" expanded="false" />
+                <element signature="e#9316#10084#1" expanded="false" />
+                <element signature="e#10348#10607#0" expanded="false" />
+                <element signature="e#10797#11040#0" expanded="false" />
+                <element signature="e#11154#11323#0" expanded="false" />
+                <element signature="e#11465#12882#0" expanded="false" />
+                <element signature="e#11465#12313#1" expanded="false" />
+                <element signature="e#12547#12864#0" expanded="false" />
+                <element signature="e#13007#14508#0" expanded="false" />
+                <element signature="e#13007#13362#1" expanded="false" />
+                <element signature="e#13851#14481#0" expanded="false" />
+                <element signature="e#13888#14481#0" expanded="false" />
+                <element signature="e#14185#14481#0" expanded="false" />
+                <element signature="e#14328#14481#0" expanded="false" />
+                <element signature="e#14591#15724#0" expanded="false" />
+                <element signature="e#14591#15007#1" expanded="false" />
+                <element signature="e#15096#15268#0" expanded="false" />
+                <element signature="e#15356#15515#0" expanded="false" />
+                <element signature="e#15557#15680#0" expanded="false" />
+                <element signature="e#15776#16920#0" expanded="false" />
+                <element signature="e#15790#15965#0" expanded="false" />
+                <element signature="e#15981#16094#0" expanded="false" />
+                <element signature="e#16119#16406#0" expanded="false" />
+                <element signature="e#16423#16918#0" expanded="false" />
+                <element signature="e#16503#16662#0" expanded="false" />
+                <element signature="e#16689#16846#0" expanded="false" />
+                <element signature="e#16963#17498#0" expanded="false" />
+                <element signature="e#16963#17238#1" expanded="false" />
+                <element signature="e#17322#17482#0" expanded="false" />
+                <element signature="e#17537#17848#0" expanded="false" />
+                <element signature="e#17578#17830#0" expanded="false" />
+                <element signature="e#17882#26132#0" expanded="false" />
+                <element signature="e#18393#18509#0" expanded="false" />
+                <element signature="e#18649#18671#0" expanded="false" />
+                <element signature="e#19195#19297#0" expanded="false" />
+                <element signature="e#19591#21695#0" expanded="false" />
+                <element signature="e#19642#21695#0" expanded="false" />
+                <element signature="e#19951#21695#0" expanded="false" />
+                <element signature="e#20143#21695#0" expanded="false" />
+                <element signature="e#20805#21259#0" expanded="false" />
+                <element signature="e#21595#21695#0" expanded="false" />
+                <element signature="e#21809#21824#0" expanded="false" />
+                <element signature="e#22267#22604#0" expanded="false" />
+                <element signature="e#22635#22773#0" expanded="false" />
+                <element signature="e#22843#24638#0" expanded="false" />
+                <element signature="e#23127#23530#0" expanded="false" />
+                <element signature="e#23808#24215#0" expanded="false" />
+                <element signature="e#24787#25598#0" expanded="false" />
+                <element signature="e#24994#25598#0" expanded="false" />
+                <element signature="e#25778#26132#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Projects/Hand_Gesture_Recognition/Trial2/MachineLearningSolutions/NeuralNetworks/ANN_Trial3.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="width" value="1280" />
+    <option name="height" value="800" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Blogger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Blogger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Blogger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Blogger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Projects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hand_Gesture_Recognition" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Trial2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MachineLearningSolutions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Blogger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Blogger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Projects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hand_Gesture_Recognition" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Trial2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MachineLearningSolutions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NeuralNetworks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Blogger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Blogger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Projects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hand_Gesture_Recognition" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Trial2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Blogger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Blogger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Projects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hand_Gesture_Recognition" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="FullScreen" value="true" />
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="00ebd6e0-1204-4800-b7c2-ecec7d882500" name="Default" comment="" />
+      <created>1530962228422</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1530962228422</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2494043" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Projects/Hand_Gesture_Recognition/Trial2/MachineLearningSolutions/NeuralNetworks/ANN_Trial3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="363" column="46" lean-forward="false" selection-start-line="363" selection-start-column="46" selection-end-line="363" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#27#1" expanded="false" />
+            <element signature="e#336#2245#0" expanded="false" />
+            <element signature="e#336#966#1" expanded="false" />
+            <element signature="e#1397#1576#0" expanded="false" />
+            <element signature="e#1614#1796#0" expanded="false" />
+            <element signature="e#2279#2524#0" expanded="false" />
+            <element signature="e#2587#3756#0" expanded="false" />
+            <element signature="e#2587#2856#1" expanded="false" />
+            <element signature="e#3631#3739#0" expanded="false" />
+            <element signature="e#3808#4741#0" expanded="false" />
+            <element signature="e#3808#4286#1" expanded="false" />
+            <element signature="e#4546#4711#0" expanded="false" />
+            <element signature="e#4784#5301#0" expanded="false" />
+            <element signature="e#4784#5068#1" expanded="false" />
+            <element signature="e#5158#5254#0" expanded="false" />
+            <element signature="e#5346#6033#0" expanded="false" />
+            <element signature="e#5346#5509#1" expanded="false" />
+            <element signature="e#5548#5691#0" expanded="false" />
+            <element signature="e#5548#5655#1" expanded="false" />
+            <element signature="e#5732#5908#0" expanded="false" />
+            <element signature="e#5732#5845#1" expanded="false" />
+            <element signature="e#5926#6012#0" expanded="false" />
+            <element signature="e#6052#6808#0" expanded="false" />
+            <element signature="e#6052#6244#1" expanded="false" />
+            <element signature="e#6280#6447#0" expanded="false" />
+            <element signature="e#6280#6372#1" expanded="false" />
+            <element signature="e#6485#6689#0" expanded="false" />
+            <element signature="e#6485#6592#1" expanded="false" />
+            <element signature="e#6707#6787#0" expanded="false" />
+            <element signature="e#6827#7267#0" expanded="false" />
+            <element signature="e#6827#7023#1" expanded="false" />
+            <element signature="e#7059#7076#0" expanded="false" />
+            <element signature="e#7114#7148#0" expanded="false" />
+            <element signature="e#7166#7246#0" expanded="false" />
+            <element signature="e#7372#8843#0" expanded="false" />
+            <element signature="e#7372#8184#1" expanded="false" />
+            <element signature="e#8319#8783#0" expanded="false" />
+            <element signature="e#8554#8783#0" expanded="false" />
+            <element signature="e#8896#9214#0" expanded="false" />
+            <element signature="e#8896#9089#1" expanded="false" />
+            <element signature="e#9316#11340#0" expanded="false" />
+            <element signature="e#9316#10084#1" expanded="false" />
+            <element signature="e#10348#10607#0" expanded="false" />
+            <element signature="e#10797#11040#0" expanded="false" />
+            <element signature="e#11154#11323#0" expanded="false" />
+            <element signature="e#11465#12882#0" expanded="false" />
+            <element signature="e#11465#12313#1" expanded="false" />
+            <element signature="e#12547#12864#0" expanded="false" />
+            <element signature="e#13007#14508#0" expanded="false" />
+            <element signature="e#13007#13362#1" expanded="false" />
+            <element signature="e#13851#14481#0" expanded="false" />
+            <element signature="e#13888#14481#0" expanded="false" />
+            <element signature="e#14185#14481#0" expanded="false" />
+            <element signature="e#14328#14481#0" expanded="false" />
+            <element signature="e#14591#15724#0" expanded="false" />
+            <element signature="e#14591#15007#1" expanded="false" />
+            <element signature="e#15096#15268#0" expanded="false" />
+            <element signature="e#15356#15515#0" expanded="false" />
+            <element signature="e#15557#15680#0" expanded="false" />
+            <element signature="e#15776#16920#0" expanded="false" />
+            <element signature="e#15790#15965#0" expanded="false" />
+            <element signature="e#15981#16094#0" expanded="false" />
+            <element signature="e#16119#16406#0" expanded="false" />
+            <element signature="e#16423#16918#0" expanded="false" />
+            <element signature="e#16503#16662#0" expanded="false" />
+            <element signature="e#16689#16846#0" expanded="false" />
+            <element signature="e#16963#17498#0" expanded="false" />
+            <element signature="e#16963#17238#1" expanded="false" />
+            <element signature="e#17322#17482#0" expanded="false" />
+            <element signature="e#17537#17848#0" expanded="false" />
+            <element signature="e#17578#17830#0" expanded="false" />
+            <element signature="e#17882#26132#0" expanded="false" />
+            <element signature="e#18393#18509#0" expanded="false" />
+            <element signature="e#18649#18671#0" expanded="false" />
+            <element signature="e#19195#19297#0" expanded="false" />
+            <element signature="e#19591#21695#0" expanded="false" />
+            <element signature="e#19642#21695#0" expanded="false" />
+            <element signature="e#19951#21695#0" expanded="false" />
+            <element signature="e#20143#21695#0" expanded="false" />
+            <element signature="e#20805#21259#0" expanded="false" />
+            <element signature="e#21595#21695#0" expanded="false" />
+            <element signature="e#21809#21824#0" expanded="false" />
+            <element signature="e#22267#22604#0" expanded="false" />
+            <element signature="e#22635#22773#0" expanded="false" />
+            <element signature="e#22843#24638#0" expanded="false" />
+            <element signature="e#23127#23530#0" expanded="false" />
+            <element signature="e#23808#24215#0" expanded="false" />
+            <element signature="e#24787#25598#0" expanded="false" />
+            <element signature="e#24994#25598#0" expanded="false" />
+            <element signature="e#25778#26132#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

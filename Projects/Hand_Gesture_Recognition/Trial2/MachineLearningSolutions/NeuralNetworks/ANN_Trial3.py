@@ -657,3 +657,4 @@ if __name__ == '__main__':
         architecture_nn = get_nn_architecture_param(architecture_nn)
         with open(f_name, 'wb') as file:
             pickle.dump([architecture_nn, params], file)
+
