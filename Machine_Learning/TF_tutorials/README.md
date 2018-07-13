@@ -1,0 +1,1 @@
+This directory is to hold all the notebooks used to introduce TensorFlow. 
