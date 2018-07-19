@@ -1,5 +1,5 @@
 """
-View video stream, have user select a window, then show whatever new comes into the frame
+Select various ROI rectangles and save them
 """
 import cv2 as cv
 import time
@@ -40,28 +40,30 @@ def mouseInteraction(event, x, y, flags, params):
 
 NUM_CAMERA_ATTEMPTS = 5
 RESPONSE_PAUSE = 0.5
-UPDATE_FRAME_WHILE_CAPTURE = True
+CAMERA_CAPTURE_MODE = True
+FILE_READING_MODE = not CAMERA_CAPTURE_MODE
 CAM_NO = 0
 cam = cv.VideoCapture(CAM_NO)
 cv.namedWindow("Window Selection")
 cv.setMouseCallback("Window Selection", mouseInteraction)
 # Get a frame from the camera
 frame = None
-for i in range(0, NUM_CAMERA_ATTEMPTS):
-    ret, frame = cam.read()
-    if ret is True:
-        break
-    else:
-        print("WARNING : {an}/{ta} Unable to connect to camera {cam_num}".format(
-            an=i + 1, ta=NUM_CAMERA_ATTEMPTS, cam_num=CAM_NO
-        ))
-        time.sleep(RESPONSE_PAUSE)
-        if i + 1 == NUM_CAMERA_ATTEMPTS:
-            print("ERROR : Program terminated because camera {0} didn't respond".format(CAM_NO))
-            exit(0)
+if CAMERA_CAPTURE_MODE:
+    for i in range(0, NUM_CAMERA_ATTEMPTS):
+        ret, frame = cam.read()
+        if ret is True:
+            break
+        else:
+            print("WARNING : {an}/{ta} Unable to connect to camera {cam_num}".format(
+                an=i + 1, ta=NUM_CAMERA_ATTEMPTS, cam_num=CAM_NO
+            ))
+            time.sleep(RESPONSE_PAUSE)
+            if i + 1 == NUM_CAMERA_ATTEMPTS:
+                print("ERROR : Program terminated because camera {0} didn't respond".format(CAM_NO))
+                exit(0)
 
 while True:
-    if UPDATE_FRAME_WHILE_CAPTURE:
+    if CAMERA_CAPTURE_MODE:
         ret, frame = cam.read()
     disp_frame = frame.copy()
     # Draw rectangles on the disp_frame
