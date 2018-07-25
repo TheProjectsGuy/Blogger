@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="00ebd6e0-1204-4800-b7c2-ecec7d882500" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="00ebd6e0-1204-4800-b7c2-ecec7d882500" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,11 +27,8 @@
       <file leaf-file-name="ROI_selector_tool.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/OpenCV/Mini_Projects/Region_Selector/ROI_selector_tool.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="774">
+            <state relative-caret-position="-670">
               <caret line="43" column="43" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
-              <folding>
-                <element signature="e#98#114#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -68,6 +63,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -78,26 +74,25 @@
             <path>
               <item name="BloggerFiles" type="b2602c69:ProjectViewProjectNode" />
               <item name="BloggerFiles" type="462c0819:PsiDirectoryNode" />
-              <item name="OpenCV" type="462c0819:PsiDirectoryNode" />
+              <item name="Machine_Learning" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BloggerFiles" type="b2602c69:ProjectViewProjectNode" />
               <item name="BloggerFiles" type="462c0819:PsiDirectoryNode" />
-              <item name="OpenCV" type="462c0819:PsiDirectoryNode" />
-              <item name="Mini_Projects" type="462c0819:PsiDirectoryNode" />
+              <item name="Machine_Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="TF_tutorials" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BloggerFiles" type="b2602c69:ProjectViewProjectNode" />
               <item name="BloggerFiles" type="462c0819:PsiDirectoryNode" />
-              <item name="OpenCV" type="462c0819:PsiDirectoryNode" />
-              <item name="Mini_Projects" type="462c0819:PsiDirectoryNode" />
-              <item name="Region_Selector" type="462c0819:PsiDirectoryNode" />
+              <item name="Machine_Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="TF_tutorials" type="462c0819:PsiDirectoryNode" />
+              <item name="Introduction" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -130,13 +125,12 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-4" width="1366" height="772" extended-state="6" />
-    <editor active="true" />
+    <frame x="-1" y="-11" width="1368" height="780" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2530303" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25681818" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="R Packages" />
-      <window_info anchor="right" id="R Graphics" />
+      <window_info anchor="right" id="R Packages" order="3" />
+      <window_info anchor="right" id="R Graphics" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" />
@@ -146,10 +140,10 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
     </layout>
@@ -158,6 +152,21 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OpenCV/Mini_Projects/Region_Selector/ROI_selector_tool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="738">
+          <caret line="43" column="43" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Machine_Learning/TF_tutorials/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -202,11 +211,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/OpenCV/Mini_Projects/Region_Selector/ROI_selector_tool.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="774">
+        <state relative-caret-position="-670">
           <caret line="43" column="43" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
-          <folding>
-            <element signature="e#98#114#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
